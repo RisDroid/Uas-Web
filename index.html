@@ -207,9 +207,10 @@
 </div>
 
 <script>
-  if (!localStorage.getItem('username')) {
-    localStorage.setItem('username','Aris');
-    localStorage.setItem('password','111111');
+ if (!localStorage.getItem('init')) {
+  localStorage.setItem('username','Aris');
+  localStorage.setItem('password','111111');
+  localStorage.setItem('init','done');
   }
 
   const login = document.getElementById('login');
@@ -269,6 +270,7 @@
 
 </body>
 </html>
+
 
 
 
