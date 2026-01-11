@@ -185,27 +185,26 @@
         </section>
 
         <!-- SETTINGS -->
-        <section id="settings" class="page-section d-none">
-          <h4 class="fw-bold mb-4">Settings</h4>
-          <div class="row g-4">
-            <div class="col-md-6">
-              <div class="card p-4">
-                <h6 class="fw-semibold mb-3">Profile</h6>
-                <input type="text" id="setUsername" class="form-control mb-3">
-                <button class="btn btn-primary" onclick="saveProfile()">Save Profile</button>
-              </div>
-            </div>
+       <section id="settings" class="page-section d-none">
+  <h4 class="fw-bold mb-4">Settings</h4>
 
-            <div class="col-md-6">
-              <div class="card p-4">
-                <h6 class="fw-semibold mb-3">Security</h6>
-                <input type="password" id="newPass" class="form-control mb-2" placeholder="New Password">
-                <input type="password" id="confirmPass" class="form-control mb-3" placeholder="Confirm Password">
-                <button class="btn btn-warning" onclick="changePassword()">Update Password</button>
-              </div>
-            </div>
-          </div>
-        </section>
+  <div class="card p-4" style="max-width: 420px">
+    <h6 class="fw-semibold mb-3">Account Settings</h6>
+
+    <label class="form-label">Username</label>
+    <input type="text" id="setUsername" class="form-control mb-3">
+
+    <label class="form-label">New Password</label>
+    <input type="password" id="newPass" class="form-control mb-3">
+
+    <label class="form-label">Confirm Password</label>
+    <input type="password" id="confirmPass" class="form-control mb-4">
+
+    <button class="btn btn-primary w-100" onclick="saveChanges()">
+      Save Changes
+    </button>
+  </div>
+</section>
 
       </main>
     </div>
@@ -213,9 +212,12 @@
 </div>
 
 <script>
-  // ===== FORCE DEFAULT LOGIN =====
-  localStorage.setItem('username', 'Aris');
-  localStorage.setItem('password', '111111');
+  // ===== INIT DEFAULT LOGIN (JALAN SEKALI) =====
+  if (!localStorage.getItem('init')) {
+    localStorage.setItem('username', 'Aris');
+    localStorage.setItem('password', '111111');
+    localStorage.setItem('init', 'done');
+  }
 
   const login = document.getElementById('login');
   const app = document.getElementById('app');
@@ -225,20 +227,25 @@
   const logoutBtn = document.getElementById('logoutBtn');
   const displayUsername = document.getElementById('displayUsername');
   const setUsername = document.getElementById('setUsername');
+  const newPass = document.getElementById('newPass');
+  const confirmPass = document.getElementById('confirmPass');
 
   function loadUser() {
     displayUsername.innerText = localStorage.getItem('username');
     setUsername.value = localStorage.getItem('username');
+    newPass.value = '';
+    confirmPass.value = '';
   }
 
+  // ===== LOGIN =====
   loginBtn.onclick = () => {
     const u = username.value.trim();
     const p = password.value.trim();
 
-    console.log('INPUT:', u, p);
-    console.log('STORAGE:', localStorage.getItem('username'), localStorage.getItem('password'));
-
-    if (u === localStorage.getItem('username') && p === localStorage.getItem('password')) {
+    if (
+      u === localStorage.getItem('username') &&
+      p === localStorage.getItem('password')
+    ) {
       login.classList.add('d-none');
       app.classList.remove('d-none');
       loadUser();
@@ -247,6 +254,7 @@
     }
   };
 
+  // ===== LOGOUT =====
   logoutBtn.onclick = () => {
     app.classList.add('d-none');
     login.classList.remove('d-none');
@@ -254,6 +262,7 @@
     password.value = '';
   };
 
+  // ===== NAVIGATION =====
   document.querySelectorAll('.nav-link').forEach(link => {
     link.onclick = () => {
       document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
@@ -263,26 +272,27 @@
     };
   });
 
-  function saveProfile() {
-    const newUsername = setUsername.value.trim();
-    if (!newUsername) return alert('Username tidak boleh kosong');
-    localStorage.setItem('username', newUsername);
-    alert('Username diubah, login ulang');
-    logoutBtn.click();
-  }
+  // ===== SAVE SETTINGS (USERNAME + PASSWORD) =====
+  function saveChanges() {
+    const u = setUsername.value.trim();
+    const p1 = newPass.value;
+    const p2 = confirmPass.value;
 
-  function changePassword() {
-    const pass1 = newPass.value;
-    const pass2 = confirmPass.value;
-    if (!pass1 || !pass2) return alert('Password kosong');
-    if (pass1 !== pass2) return alert('Password tidak cocok');
-    localStorage.setItem('password', pass1);
-    alert('Password berhasil diubah');
-    newPass.value = confirmPass.value = '';
+    if (!u) return alert('Username tidak boleh kosong');
+    if (!p1 || !p2) return alert('Password tidak boleh kosong');
+    if (p1.length < 6) return alert('Password minimal 6 karakter');
+    if (p1 !== p2) return alert('Password tidak sama');
+
+    localStorage.setItem('username', u);
+    localStorage.setItem('password', p1);
+
+    alert('Perubahan disimpan. Silakan login ulang.');
+    logoutBtn.click();
   }
 </script>
 </body>
 </html>
+
 
 
 
