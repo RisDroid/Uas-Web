@@ -165,17 +165,31 @@
 
         <!-- FLEET -->
         <section id="fleet" class="page-section d-none">
-          <h4 class="fw-bold mb-3">Fleet</h4>
           <div class="row g-3">
-            <div class="col-md-4">
-              <div class="card stat-card p-3">
-                Truck: 12
-                <img src="assets/truck.png" class="stat-icon mt-2" alt="Truck Icon">
-              </div>
-            </div>
-            <div class="col-md-4"><div class="card stat-card p-3">Van: 8</div></div>
-            <div class="col-md-4"><div class="card stat-card p-3">Bike: 5</div></div>
-          </div>
+  <div class="col-md-4">
+    <div class="card stat-card p-3 text-center">
+      <h6>Truck</h6>
+      <h3>12</h3>
+      <img src="assets/truck.png" class="stat-icon mt-2" alt="Truck">
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card stat-card p-3 text-center">
+      <h6>Van</h6>
+      <h3>8</h3>
+      <img src="assets/van.png" class="stat-icon mt-2" alt="Van">
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card stat-card p-3 text-center">
+      <h6>Bike</h6>
+      <h3>5</h3>
+      <img src="assets/bike.png" class="stat-icon mt-2" alt="Bike">
+    </div>
+  </div>
+</div>
         </section>
 
         <!-- SETTINGS -->
@@ -207,19 +221,18 @@
 </div>
 
 <script>
- if (!localStorage.getItem('init')) {
-  localStorage.setItem('username','Aris');
-  localStorage.setItem('password','111111');
-  localStorage.setItem('init','done');
-  }
+  // ===== FORCE DEFAULT LOGIN =====
+  localStorage.setItem('username', 'Aris');
+  localStorage.setItem('password', '111111');
 
   const login = document.getElementById('login');
   const app = document.getElementById('app');
-
-  function syncLoginForm() {
-    username.value = localStorage.getItem('username');
-    password.value = '';
-  }
+  const username = document.getElementById('username');
+  const password = document.getElementById('password');
+  const loginBtn = document.getElementById('loginBtn');
+  const logoutBtn = document.getElementById('logoutBtn');
+  const displayUsername = document.getElementById('displayUsername');
+  const setUsername = document.getElementById('setUsername');
 
   function loadUser() {
     displayUsername.innerText = localStorage.getItem('username');
@@ -227,23 +240,32 @@
   }
 
   loginBtn.onclick = () => {
-    if(username.value===localStorage.getItem('username') && password.value===localStorage.getItem('password')) {
+    const u = username.value.trim();
+    const p = password.value.trim();
+
+    console.log('INPUT:', u, p);
+    console.log('STORAGE:', localStorage.getItem('username'), localStorage.getItem('password'));
+
+    if (u === localStorage.getItem('username') && p === localStorage.getItem('password')) {
       login.classList.add('d-none');
       app.classList.remove('d-none');
       loadUser();
-    } else alert('Login gagal');
+    } else {
+      alert('Login gagal');
+    }
   };
 
   logoutBtn.onclick = () => {
     app.classList.add('d-none');
-    login.classList.remove('d-flex');
-    syncLoginForm();
+    login.classList.remove('d-none');
+    username.value = '';
+    password.value = '';
   };
 
   document.querySelectorAll('.nav-link').forEach(link => {
     link.onclick = () => {
-      document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
-      document.querySelectorAll('.page-section').forEach(s=>s.classList.add('d-none'));
+      document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+      document.querySelectorAll('.page-section').forEach(s => s.classList.add('d-none'));
       link.classList.add('active');
       document.getElementById(link.dataset.page).classList.remove('d-none');
     };
@@ -251,25 +273,25 @@
 
   function saveProfile() {
     const newUsername = setUsername.value.trim();
-    if(!newUsername){alert('Username tidak boleh kosong'); return;}
+    if (!newUsername) return alert('Username tidak boleh kosong');
     localStorage.setItem('username', newUsername);
-    alert('Username berhasil diubah. Silakan login ulang.');
+    alert('Username diubah, login ulang');
     logoutBtn.click();
   }
 
   function changePassword() {
-    const pass1 = newPass.value, pass2 = confirmPass.value;
-    if(!pass1||!pass2){alert('Password tidak boleh kosong'); return;}
-    if(pass1.length<6){alert('Password minimal 6 karakter'); return;}
-    if(pass1!==pass2){alert('Password tidak cocok'); return;}
+    const pass1 = newPass.value;
+    const pass2 = confirmPass.value;
+    if (!pass1 || !pass2) return alert('Password kosong');
+    if (pass1 !== pass2) return alert('Password tidak cocok');
     localStorage.setItem('password', pass1);
     alert('Password berhasil diubah');
-    newPass.value=''; confirmPass.value='';
+    newPass.value = confirmPass.value = '';
   }
 </script>
-
 </body>
 </html>
+
 
 
 
