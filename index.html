@@ -5,30 +5,25 @@
   <title>Smart Logistics</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- Favicon -->
   <link rel="icon" href="assets/icon.png">
 
+  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
 
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="style.css">
-
-  <style>
-    .page-section {
-      animation: fadeIn .3s ease-in-out;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(5px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
 </head>
 <body>
 
 <!-- ================= LOGIN ================= -->
 <section id="login">
   <div class="d-flex justify-content-center align-items-center vh-100">
-    <div class="card p-4" style="width:360px">
+    <div class="card login-card p-4" style="width:360px">
+      
       <div class="text-center mb-3">
+        <img src="assets/logo.png" class="logo mb-2" alt="Logo Smart Logistics">
         <h3 class="fw-bold">Smart Logistics</h3>
       </div>
 
@@ -43,6 +38,7 @@
       </div>
 
       <button class="btn btn-primary w-100" id="loginBtn">Login</button>
+
       <small class="text-center d-block mt-3 text-muted">
         default: Aris / 111111
       </small>
@@ -56,7 +52,18 @@
     <div class="row">
 
       <!-- SIDEBAR -->
-      <aside class="col-md-3 col-lg-2 p-3 border-end">
+      <aside class="col-md-3 col-lg-2 sidebar p-3">
+        <!-- LOGO -->
+        <div class="text-center mb-4">
+          <img src="assets/logo.png" class="logo mb-2" alt="Logo Smart Logistics">
+          <h5>Smart Logistics</h5>
+        </div>
+
+        <!-- ICON BRANDING -->
+        <div class="text-center mb-4">
+          <img src="assets/truck.png" class="truck-icon" alt="Truck Branding">
+        </div>
+
         <ul class="nav flex-column gap-2">
           <li><a class="nav-link active" data-page="dashboard">Dashboard</a></li>
           <li><a class="nav-link" data-page="orders">Orders</a></li>
@@ -70,8 +77,8 @@
       <main class="col-md-9 col-lg-10 p-4">
 
         <!-- TOP BAR -->
-        <nav class="navbar mb-4 px-3 rounded shadow-sm">
-          <span class="fw-semibold" id="pageTitle">Dashboard</span>
+        <nav class="navbar top-navbar mb-4 px-3 rounded shadow-sm">
+          <span class="fw-semibold">Dashboard</span>
           <div class="ms-auto d-flex align-items-center gap-3">
             <span id="displayUsername">Aris</span>
             <button class="btn btn-outline-danger btn-sm" id="logoutBtn">Logout</button>
@@ -80,33 +87,195 @@
 
         <!-- DASHBOARD -->
         <section id="dashboard" class="page-section">
-          <!-- ISI DASHBOARD ASLI KAMU -->
-          <p>Dashboard content tetap</p>
+          <div class="row g-3 mb-4">
+            <div class="col-md-3">
+              <div class="card stat-card p-3">
+                <h6>Total Shipments</h6>
+                <h3>1,245</h3>
+                <img src="assets/truck.png" class="stat-icon mt-2" alt="Truck Icon">
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card stat-card p-3">
+                <h6>In Transit</h6>
+                <h3>320</h3>
+                <img src="assets/truck.png" class="stat-icon mt-2" alt="Truck Icon">
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card stat-card p-3">
+                <h6>Delivered</h6>
+                <h3>890</h3>
+                <img src="assets/truck.png" class="stat-icon mt-2" alt="Truck Icon">
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card stat-card p-3">
+                <h6>Issues</h6>
+                <h3>35</h3>
+                <img src="assets/truck.png" class="stat-icon mt-2" alt="Truck Icon">
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header fw-semibold">Recent Shipments</div>
+            <table class="table table-hover mb-0">
+              <thead>
+                <tr><th>ID</th><th>Destination</th><th>Date</th><th>Status</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>SHP-001</td><td>Jakarta</td><td>12 Jan 2026</td><td><span class="badge bg-success">Delivered</span></td></tr>
+                <tr><td>SHP-002</td><td>Bandung</td><td>12 Jan 2026</td><td><span class="badge bg-warning text-dark">In Transit</span></td></tr>
+                <tr><td>SHP-003</td><td>Surabaya</td><td>13 Jan 2026</td><td><span class="badge bg-success">Delivered</span></td></tr>
+                <tr><td>SHP-004</td><td>Medan</td><td>13 Jan 2026</td><td><span class="badge bg-danger">Pending</span></td></tr>
+                <tr><td>SHP-005</td><td>Bali</td><td>14 Jan 2026</td><td><span class="badge bg-warning text-dark">In Transit</span></td></tr>
+                <tr><td>SHP-006</td><td>Yogyakarta</td><td>14 Jan 2026</td><td><span class="badge bg-success">Delivered</span></td></tr>
+                <tr><td>SHP-007</td><td>Semarang</td><td>15 Jan 2026</td><td><span class="badge bg-warning text-dark">In Transit</span></td></tr>
+                <tr><td>SHP-008</td><td>Makassar</td><td>15 Jan 2026</td><td><span class="badge bg-danger">Pending</span></td></tr>
+                <tr><td>SHP-009</td><td>Palembang</td><td>16 Jan 2026</td><td><span class="badge bg-success">Delivered</span></td></tr>
+                <tr><td>SHP-010</td><td>Balikpapan</td><td>16 Jan 2026</td><td><span class="badge bg-warning text-dark">In Transit</span></td></tr>
+              </tbody>
+            </table>
+          </div>
         </section>
 
         <!-- ORDERS -->
         <section id="orders" class="page-section d-none">
-          <!-- ISI ORDERS ASLI KAMU -->
-          <p>Orders content tetap</p>
+          <h4 class="fw-bold mb-3">Orders Management</h4>
+          <div class="card p-3">
+            <table class="table table-hover">
+              <thead>
+                <tr><th>Order ID</th><th>Customer</th><th>Destination</th><th>Date</th><th>Status</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>ORD-001</td><td>PT Maju Jaya</td><td>Jakarta</td><td>12 Jan 2026</td><td><span class="badge bg-warning text-dark">In Transit</span></td></tr>
+                <tr><td>ORD-002</td><td>CV Sukses Abadi</td><td>Bandung</td><td>12 Jan 2026</td><td><span class="badge bg-success">Delivered</span></td></tr>
+                <tr><td>ORD-003</td><td>PT Sentosa</td><td>Surabaya</td><td>13 Jan 2026</td><td><span class="badge bg-danger">Pending</span></td></tr>
+                <tr><td>ORD-004</td><td>CV Makmur</td><td>Bali</td><td>13 Jan 2026</td><td><span class="badge bg-success">Delivered</span></td></tr>
+                <tr><td>ORD-005</td><td>PT Nusantara Logistik</td><td>Medan</td><td>14 Jan 2026</td><td><span class="badge bg-warning text-dark">In Transit</span></td></tr>
+                <tr><td>ORD-006</td><td>CV Prima Sejahtera</td><td>Yogyakarta</td><td>14 Jan 2026</td><td><span class="badge bg-success">Delivered</span></td></tr>
+                <tr><td>ORD-007</td><td>PT Global Indo</td><td>Semarang</td><td>15 Jan 2026</td><td><span class="badge bg-warning text-dark">In Transit</span></td></tr>
+                <tr><td>ORD-008</td><td>CV Berkah Jaya</td><td>Makassar</td><td>15 Jan 2026</td><td><span class="badge bg-danger">Pending</span></td></tr>
+                <tr><td>ORD-009</td><td>PT Andalan</td><td>Palembang</td><td>16 Jan 2026</td><td><span class="badge bg-success">Delivered</span></td></tr>
+                <tr><td>ORD-010</td><td>CV Cahaya Abadi</td><td>Balikpapan</td><td>16 Jan 2026</td><td><span class="badge bg-warning text-dark">In Transit</span></td></tr>
+              </tbody>
+            </table>
+          </div>
         </section>
 
         <!-- FLEET -->
         <section id="fleet" class="page-section d-none">
-          <!-- ISI FLEET ASLI KAMU -->
-          <p>Fleet content tetap</p>
-        </section>
+          <div class="row g-3">
+            <div class="col-md-4">
+    <div class="card stat-card p-3 text-center">
+      <h6>Truck</h6>
+      <h3>12</h3>
+      <img src="assets/truck.png" class="stat-icon mt-2" alt="Truck">
+    </div>
+  </div>
+            
+  <div class="col-md-4">
+    <div class="card stat-card p-3 text-center">
+      <h6>Van</h6>
+      <h3>8</h3>
+      <img src="assets/van.png" class="stat-icon mt-2" alt="Van">
+    </div>
+  </div>
 
-        <!-- REPORTS -->
-        <section id="reports" class="page-section d-none">
-          <!-- ISI REPORTS ASLI KAMU -->
-          <p>Reports content tetap</p>
+  <div class="col-md-4">
+    <div class="card stat-card p-3 text-center">
+      <h6>Bike</h6>
+      <h3>5</h3>
+      <img src="assets/bike.png" class="stat-icon mt-2" alt="Bike">
+    </div>
+  </div>
+</div>
         </section>
+        <!-- REPORTS -->
+<section id="reports" class="page-section d-none">
+  <h4 class="fw-bold mb-4">Reports</h4>
+
+  <div class="row g-3 mb-4">
+    <div class="col-md-4">
+      <div class="card stat-card p-3 text-center">
+        <h6>Total Orders</h6>
+        <h3>1,245</h3>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card stat-card p-3 text-center">
+        <h6>Delivered</h6>
+        <h3>890</h3>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card stat-card p-3 text-center">
+        <h6>Pending</h6>
+        <h3>35</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header fw-semibold">Shipment Report</div>
+    <table class="table table-hover mb-0">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Destination</th>
+          <th>Date</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>SHP-001</td>
+          <td>Jakarta</td>
+          <td>12 Jan 2026</td>
+          <td><span class="badge bg-success">Delivered</span></td>
+        </tr>
+        <tr>
+          <td>SHP-002</td>
+          <td>Bandung</td>
+          <td>12 Jan 2026</td>
+          <td><span class="badge bg-warning text-dark">In Transit</span></td>
+        </tr>
+        <tr>
+          <td>SHP-003</td>
+          <td>Medan</td>
+          <td>13 Jan 2026</td>
+          <td><span class="badge bg-danger">Pending</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 
         <!-- SETTINGS -->
-        <section id="settings" class="page-section d-none">
-          <!-- ISI SETTINGS ASLI KAMU -->
-          <p>Settings content tetap</p>
-        </section>
+       <section id="settings" class="page-section d-none">
+  <h4 class="fw-bold mb-4">Settings</h4>
+
+  <div class="card p-4" style="max-width: 420px">
+    <h6 class="fw-semibold mb-3">Account Settings</h6>
+
+    <label class="form-label">Username</label>
+    <input type="text" id="setUsername" class="form-control mb-3">
+
+    <label class="form-label">New Password</label>
+    <input type="password" id="newPass" class="form-control mb-3">
+
+    <label class="form-label">Confirm Password</label>
+    <input type="password" id="confirmPass" class="form-control mb-4">
+
+    <button class="btn btn-primary w-100" onclick="saveChanges()">
+      Save Changes
+    </button>
+  </div>
+</section>
+        
 
       </main>
     </div>
@@ -114,7 +283,7 @@
 </div>
 
 <script>
-  // ===== INIT =====
+  // ===== INIT DEFAULT LOGIN (JALAN SEKALI) =====
   if (!localStorage.getItem('init')) {
     localStorage.setItem('username', 'Aris');
     localStorage.setItem('password', '111111');
@@ -123,28 +292,40 @@
 
   const login = document.getElementById('login');
   const app = document.getElementById('app');
-  const loginBtn = document.getElementById('loginBtn');
-  const logoutBtn = document.getElementById('logoutBtn');
   const username = document.getElementById('username');
   const password = document.getElementById('password');
+  const loginBtn = document.getElementById('loginBtn');
+  const logoutBtn = document.getElementById('logoutBtn');
   const displayUsername = document.getElementById('displayUsername');
-  const pageTitle = document.getElementById('pageTitle');
+  const setUsername = document.getElementById('setUsername');
+  const newPass = document.getElementById('newPass');
+  const confirmPass = document.getElementById('confirmPass');
 
-  // LOGIN
+  function loadUser() {
+    displayUsername.innerText = localStorage.getItem('username');
+    setUsername.value = localStorage.getItem('username');
+    newPass.value = '';
+    confirmPass.value = '';
+  }
+
+  // ===== LOGIN =====
   loginBtn.onclick = () => {
+    const u = username.value.trim();
+    const p = password.value.trim();
+
     if (
-      username.value === localStorage.getItem('username') &&
-      password.value === localStorage.getItem('password')
+      u === localStorage.getItem('username') &&
+      p === localStorage.getItem('password')
     ) {
       login.classList.add('d-none');
       app.classList.remove('d-none');
-      displayUsername.innerText = localStorage.getItem('username');
+      loadUser();
     } else {
       alert('Login gagal');
     }
   };
 
-  // LOGOUT
+  // ===== LOGOUT =====
   logoutBtn.onclick = () => {
     app.classList.add('d-none');
     login.classList.remove('d-none');
@@ -152,27 +333,44 @@
     password.value = '';
   };
 
-  // NAVIGATION
+  // ===== NAVIGATION =====
   document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-
-      document.querySelectorAll('.nav-link')
-        .forEach(l => l.classList.remove('active'));
-
-      document.querySelectorAll('.page-section')
-        .forEach(s => s.classList.add('d-none'));
-
+    link.onclick = () => {
+      document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+      document.querySelectorAll('.page-section').forEach(s => s.classList.add('d-none'));
       link.classList.add('active');
-
-      const target = document.getElementById(link.dataset.page);
-      if (target) target.classList.remove('d-none');
-
-      pageTitle.textContent =
-        link.dataset.page.charAt(0).toUpperCase() +
-        link.dataset.page.slice(1);
-    });
+      document.getElementById(link.dataset.page).classList.remove('d-none');
+    };
   });
-</script>
 
+  // ===== SAVE SETTINGS (USERNAME + PASSWORD) =====
+  function saveChanges() {
+    const u = setUsername.value.trim();
+    const p1 = newPass.value;
+    const p2 = confirmPass.value;
+
+    if (!u) return alert('Username tidak boleh kosong');
+    if (!p1 || !p2) return alert('Password tidak boleh kosong');
+    if (p1.length < 6) return alert('Password minimal 6 karakter');
+    if (p1 !== p2) return alert('Password tidak sama');
+
+    localStorage.setItem('username', u);
+    localStorage.setItem('password', p1);
+
+    alert('Perubahan disimpan. Silakan login ulang.');
+    logoutBtn.click();
+  }
+</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
